@@ -14,16 +14,17 @@ public class PSOManager : MonoBehaviour
     double maxX = 10f;
     Vector2 bestPosition;
     double bestError;
+
     // Start is called before the first frame update
     void Start()
     {
-        bestPosition = Solve(dimension,numParticles, minX, maxX,maxEpoch, exitError);
+        bestPosition = Solve(dimension, numParticles, minX, maxX, maxEpoch, exitError);
         bestError = GetError(bestPosition);
     }
 
     private static double GetError(Vector2 bestPosition)
     {
-        
+
         double trueMin = -0.42888194; // true min for z = x * exp(-(x^2 + y^2))
         double z = bestPosition.x * Math.Exp(-((bestPosition.x * bestPosition.x) + (bestPosition.y * bestPosition.y)));
         return (z - trueMin) * (z - trueMin); // squared diff
@@ -32,12 +33,8 @@ public class PSOManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-    
-
-
-    
 
     private static Vector2 Solve(int _dimension, int _numParticles, double _minX, double _maxX, int _maxEpoch, double _exitError)
     {
@@ -70,6 +67,7 @@ public class PSOManager : MonoBehaviour
                 swarm[i].transform.position = bestGlobalPosition;
             }
         }
+
         //initialize
         double w = 0.729; // inertia weight. see http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=00870279
         double c1 = 1.49445; // cognitive/local weight
@@ -153,8 +151,8 @@ public class PSOManager : MonoBehaviour
 
         Vector2 result = new Vector2();
         result = bestGlobalPosition;
+
+        Debug.Log(result);
         return result;
-        
-        
     }
 }

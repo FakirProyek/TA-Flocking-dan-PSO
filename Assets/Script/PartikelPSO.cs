@@ -26,7 +26,5 @@ namespace Assets.Script
             this.bestPosition = _bestPosition;
             this.bestError = _bestError;
         }
-
-
     }
 }
